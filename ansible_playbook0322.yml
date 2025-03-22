@@ -1,0 +1,25 @@
+---
+- hosts: webservers
+  gather_facts: no
+  become: true
+  become_user: root
+  tasks:
+  - name: installing some package
+    yum:
+     name: httpdsgsdhsgdhsh
+     state: present
+    ignore_errors: true
+    tags:
+     - amit
+     - edureka
+  - name: start the service
+    service:
+     name: httpd
+     state: started
+    register: service_execution
+    tags:
+     - service
+     - edureka
+  - name: show status
+    debug:
+     var: service_execution
